@@ -2,7 +2,7 @@
 
 Classifier::Classifier()
 {
-    //ctor
+    state = new StartState();
 }
 
 Classifier::~Classifier()

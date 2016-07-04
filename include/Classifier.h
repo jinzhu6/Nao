@@ -1,6 +1,9 @@
 #ifndef CLASSIFIER_H
 #define CLASSIFIER_H
 
+#include "StateClassifier.h"
+#include "StartState.h"
+
 class Classifier
 {
     public:
@@ -8,7 +11,7 @@ class Classifier
         virtual ~Classifier();
     protected:
     private:
-        this innerClassifier;
+        StateClassifier* state;
 
 };
 
