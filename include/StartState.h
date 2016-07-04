@@ -9,7 +9,6 @@ class StartState : public StateClassifier
     public:
         StartState();
         virtual ~StartState();
-
         void handle();
     protected:
     private:
