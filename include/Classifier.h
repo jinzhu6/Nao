@@ -1,7 +1,6 @@
 #ifndef CLASSIFIER_H
 #define CLASSIFIER_H
 
-
 class Classifier
 {
     public:
@@ -9,7 +8,7 @@ class Classifier
         virtual ~Classifier();
     protected:
     private:
-        Classifier innerClassifier;
+        this innerClassifier;
 
 };
 
