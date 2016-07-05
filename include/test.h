@@ -5,11 +5,10 @@
 using namespace cv;
 using namespace std;
 
-Mat src_gray;
-int thresh = 100;
-int max_thresh = 255;
-RNG rng(12345);
-Mat output;
+#define ALPHA 2
+
+
+
 
 /// Function header
 void thresh_callback(int, void* );
@@ -19,4 +18,7 @@ void mainAllessandro(Mat& src);
 void showImageStop(Mat& img,string name);
 void erode_callback(int, void* );
 void thresh_callback(int, void* );
+void contrast_enhance(Mat& img);
+
+
 #endif // TEST_H_INCLUDED

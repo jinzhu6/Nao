@@ -4,6 +4,15 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+
+Mat outputMatrix;
+Mat src_gray;
+RNG rng(12345);
+
+int thresh = 100;
+int max_thresh = 255;
+
+
 void mainAllessandro(Mat& src){
     resize(src, src, Size_<int>(src.cols/2, src.rows/2));
     /// Convert image to gray and blur it
@@ -32,25 +41,25 @@ void mainAllessandro(Mat& src){
     thresh_callback( 0, 0 );
 
 
-    threshold( src_gray, output, 245, 255, THRESH_BINARY );
-    erode(output, output, Mat());
-    dilate(output, output, Mat());
+    threshold( src_gray, outputMatrix, 245, 255, THRESH_BINARY );
+    erode(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
 
-    dilate(output, output, Mat());
-    dilate(output, output, Mat());
-    dilate(output, output, Mat());
-    dilate(output, output, Mat());
-    dilate(output, output, Mat());
-    dilate(output, output, Mat());
-    dilate(output, output, Mat());
-    dilate(output, output, Mat());
-    dilate(output, output, Mat());
-    imshow("Threshould", output);
+    dilate(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
+    imshow("Threshould", outputMatrix);
 
     Mat result;
     //cvtColor( src, result, CV_BGR2GRAY );
 
-    result =src_gray.mul(output/255);
+    result =src_gray.mul(outputMatrix/255);
     imshow("result", result);
 
 
@@ -65,8 +74,8 @@ void showImageStop(Mat& img,string name){
 
 void erode_callback(int, void* ){
     cout << "erode" << endl;
-    dilate(output, output, Mat());
-    imshow("Threshould", output);
+    dilate(outputMatrix, outputMatrix, Mat());
+    imshow("Threshould", outputMatrix);
 }
 
 
@@ -76,9 +85,23 @@ void thresh_callback(int, void* )
 
     /// Detect edges using Threshold
    // medianBlur(src_gray, src_gray,3);
-    threshold( src_gray, output, thresh, 255, THRESH_BINARY );
+    threshold( src_gray, outputMatrix, thresh, 255, THRESH_BINARY );
     cout << thresh << endl;
-    erode(output, output, Mat());
-    dilate(output, output, Mat());
-    imshow("Threshould", output);
+    erode(outputMatrix, outputMatrix, Mat());
+    dilate(outputMatrix, outputMatrix, Mat());
+    imshow("Threshould", outputMatrix);
+}
+
+void contrast_enhance(Mat& img){
+    int x = 0;
+    int y = 0;
+    int c = 0;
+    for(; y < img.rows; y++){
+        for(; x < img.cols; x++){
+            for(; c < 3; c++){
+                img.at<Vec3b>(y,x)[c] *= ALPHA;
+            }
+        }
+    }
+
 }
