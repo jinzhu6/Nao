@@ -92,16 +92,35 @@ void thresh_callback(int, void* )
     imshow("Threshould", outputMatrix);
 }
 
-void contrast_enhance(Mat& img){
-    int x = 0;
-    int y = 0;
-    int c = 0;
-    for(; y < img.rows; y++){
-        for(; x < img.cols; x++){
-            for(; c < 3; c++){
-                img.at<Vec3b>(y,x)[c] *= ALPHA;
+void contrast_enhance(Mat& src, Mat& dst){
+    int x;
+    int y;
+    int c;
+    for(y = 0; y < src.rows; y++){
+        for(x = 0; x < src.cols; x++){
+            for(c = 0; c < 3; c++){
+                dst.at<Vec3b>(y,x)[c] = src.at<Vec3b>(y,x)[c]*ALPHA;
             }
         }
     }
+}
 
+
+void apply_mask(Mat& src, Mat& dst, Mat& mask){
+    int x;
+    int y;
+    int c;
+    for(y = 0; y < src.rows; y++){
+        for(x = 0; x < src.cols; x++){
+            for(c = 0; c < 3; c++){
+
+                if(mask.at<Vec3b>(y,x)[c] == 1){
+                    cout << mask.at<Vec3b>(y,x)[c]+0 << ",";
+                    dst.at<Vec3b>(y,x)[c] = src.at<Vec3b>(y,x)[c];
+                }
+                else
+                    dst.at<Vec3b>(y,x)[c] = 0;
+            }
+        }
+    }
 }

@@ -5,10 +5,7 @@
 using namespace cv;
 using namespace std;
 
-#define ALPHA 2
-
-
-
+#define ALPHA 2.2
 
 /// Function header
 void thresh_callback(int, void* );
@@ -18,7 +15,7 @@ void mainAllessandro(Mat& src);
 void showImageStop(Mat& img,string name);
 void erode_callback(int, void* );
 void thresh_callback(int, void* );
-void contrast_enhance(Mat& img);
-
+void contrast_enhance(Mat& src, Mat& dst);
+void apply_mask(Mat& src, Mat& dst, Mat& mask);
 
 #endif // TEST_H_INCLUDED
