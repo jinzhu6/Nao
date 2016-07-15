@@ -15,6 +15,7 @@ class Object
         void resizeObject(unsigned short divisor);
         void preTreat();
         void noPreTreat();
+        void saveResult();
     protected:
 
     private:

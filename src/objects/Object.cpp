@@ -1,6 +1,11 @@
 #include "Object.h"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include <iostream>
+
+using namespace std;
+
+
 Object::Object(Mat& img, const string name):img(img),name(name){
     computedMatrix = Mat::zeros(img.size(), CV_32F);
 };
@@ -36,3 +41,12 @@ void Object::preTreat(){
 void Object::noPreTreat(){
     computedMatrix = img;
 }
+
+void Object::saveResult(){
+    string path = "resources/";
+    path += name;
+    path += ".jpg";
+    cout << path << endl;
+    imwrite(path, computedMatrix);
+}
+
