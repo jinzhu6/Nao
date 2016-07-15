@@ -124,3 +124,25 @@ void apply_mask(Mat& src, Mat& dst, Mat& mask){
         }
     }
 }
+void mainManu(Mat& src){
+Mat channel[3];
+    // The actual splitting.
+    split(src, channel);
+    Mat dst = Mat::zeros(src.rows/4,src.cols/4,src.type());
+    resize(src, dst, dst.size(), 0, 0, INTER_NEAREST );
+    src = dst;
+    cvtColor(dst,dst,CV_BGR2GRAY);
+    Mat gray = dst;
+    imshow("gray", gray);
+    //equalizeHist(dst,dst);
+    //normalize(dst, dst, 0, 1., NORM_MINMAX);
+    distanceTransform(dst, dst, CV_DIST_L1,3);
+    imshow("dist transform", dst);
+    //
+    threshold( dst, dst, 20, 255, THRESH_BINARY_INV );
+    Mat mask = dst;
+    //cout << mask.depth() << endl;
+    //bitwise_and(src,dst,mask);
+    imshow("img before", src);
+    showImageStop(dst,"find apples");
+}

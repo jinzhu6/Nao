@@ -11,6 +11,7 @@ using namespace std;
 void thresh_callback(int, void* );
 void erode_callback(int, void* );
 
+void mainManu(Mat& src);
 void mainAllessandro(Mat& src);
 void showImageStop(Mat& img,string name);
 void erode_callback(int, void* );
