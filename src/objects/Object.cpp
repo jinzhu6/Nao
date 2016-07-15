@@ -30,7 +30,9 @@ void Object::resizeObject(unsigned short divisor){
 }
 
 unsigned int Object::extract_feature(Feature& feature){
-    return feature.extractIn(computedMatrix);
+    int value = feature.extractIn(computedMatrix);
+    saveResult(feature.resultingImage);
+    return value;
 }
 
 void Object::preTreat(){
@@ -42,11 +44,11 @@ void Object::noPreTreat(){
     computedMatrix = img;
 }
 
-void Object::saveResult(){
+void Object::saveResult(Mat& img){
     string path = "resources/";
     path += name;
     path += ".jpg";
     cout << path << endl;
-    imwrite(path, computedMatrix);
+    imwrite(path, img);
 }
 

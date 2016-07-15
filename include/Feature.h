@@ -11,8 +11,9 @@ class Feature
         virtual ~Feature();
 
         virtual int extractIn(Mat& img) = 0;
-    protected:
         Mat resultingImage;
+    protected:
+
         int value = 0;
 
     private:

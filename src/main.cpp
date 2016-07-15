@@ -29,7 +29,7 @@ int main( int argc, char** argv )
     if(argc != 2) return 0;
 
     Mat img = imread(argv[1],1);
-    Object obj(img,"redAppleLBP");
+    Object obj(img,"glassLBP");
 
     obj.preTreat();
     obj.show();
@@ -37,7 +37,6 @@ int main( int argc, char** argv )
     ColorIntensityMean cim = ColorIntensityMean();
     cout << obj.extract_feature(lbp) << endl;
     obj.showComputed();
-    obj.saveResult();
     waitKey(0);
 
     return 0;
