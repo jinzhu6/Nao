@@ -31,7 +31,7 @@ void Object::resizeObject(unsigned short divisor){
 
 unsigned int Object::extract_feature(Feature& feature){
     int value = feature.extractIn(computedMatrix);
-    saveResult(feature.resultingImage);
+    //saveResult(feature.resultingImage);
     return value;
 }
 
