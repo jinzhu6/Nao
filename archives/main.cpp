@@ -7,26 +7,24 @@
 
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <iostream>
-
 #include "Classifier.h"
 #include "test.h"
 #include "Object.h"
 #include "LocalBinaryPattern.h"
+#include "AngularSecondMoment.h"
 #include "ColorIntensityMean.h"
-#include "Nao.h"
 
-
+#include <iostream>
 using namespace cv;
 using namespace std;
 
 
 
+
 /** @function main */
-int main(int argc, char* argv[] )
+int main( int argc, char** argv )
 {
     if(argc != 2) return 0;
 
@@ -38,13 +36,9 @@ int main(int argc, char* argv[] )
     LocalBinaryPattern lbp = LocalBinaryPattern();
     ColorIntensityMean cim = ColorIntensityMean();
     cout << obj.extract_feature(lbp) << endl;
-    Nao nao;
-    nao.lookForObject();
-    nao.showObject();
-    ClassifierState* cs = new FirstSplitState();
-    string path = "resources\classifierStates\firstStateTraining";
-    nao.testClassifier(cs,path);
-
+    obj.showComputed();
     waitKey(0);
+
     return 0;
 }
+

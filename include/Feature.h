@@ -9,11 +9,10 @@ class Feature
     public:
         Feature();
         virtual ~Feature();
+        virtual int extractIn(Mat& img);
 
-        virtual int extractIn(Mat& img) = 0;
-        Mat resultingImage;
     protected:
-
+        Mat resultingImage;
         int value = 0;
 
     private:

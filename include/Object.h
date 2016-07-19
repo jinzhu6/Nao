@@ -7,6 +7,7 @@ using namespace cv;
 class Object
 {
     public:
+        Object(){img = Mat::zeros(0,0,0);};
         Object(Mat& img, const string name);
         virtual ~Object();
         unsigned int extract_feature(Feature& feature);
@@ -16,12 +17,14 @@ class Object
         void preTreat();
         void noPreTreat();
         void saveResult(Mat& img);
+        Object operator=(const Object o);
+
     protected:
 
     private:
-        Mat& img;
+        Mat img;
         Mat computedMatrix;
-        const string name;
+        string name;
 };
 
 #endif // OBJECT_H

@@ -2,10 +2,14 @@
 
 Classifier::Classifier()
 {
-    state = new StartState();
 }
 
 Classifier::~Classifier()
 {
     //dtor
+}
+
+
+void Classifier::setState(ClassifierState* clS){
+    this->state = clS;
 }

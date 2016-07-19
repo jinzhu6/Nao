@@ -10,7 +10,9 @@ class ColorIntensityMean : public Feature
         ColorIntensityMean();
         virtual ~ColorIntensityMean();
         int extractIn(Mat& img);
+
     protected:
+
     private:
         template <typename _Tp, typename _Ttab>
         void compute(Mat& src);

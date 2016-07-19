@@ -14,6 +14,13 @@ Object::~Object()
     //dtor
 }
 
+Object Object::operator=(const Object o){
+    this->computedMatrix = o.computedMatrix;
+    this->img = o.img;
+    this->name = o.name;
+    return *this;
+}
+
 
 void Object::show(){
     imshow(name,img);
