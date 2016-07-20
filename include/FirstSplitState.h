@@ -7,12 +7,9 @@
 class FirstSplitState : public ClassifierState
 {
     public:
-        FirstSplitState();
+        FirstSplitState(vector<Feature*> featureList);
         virtual ~FirstSplitState();
-        void storeValues();
-        void loadValues();
-        void train();
-        unsigned int test();
+
     protected:
     private:
 };

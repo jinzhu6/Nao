@@ -10,7 +10,7 @@ Feature::~Feature()
     //dtor
 }
 
-int Feature::extractIn(Mat& img){
 
-    return 0;
-}
+/*int Feature::extractIn(Mat& img){
+    return 1;
+}*/

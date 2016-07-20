@@ -51,7 +51,6 @@ unsigned int Nao::testClassifier(ClassifierState* clS, const string &testPath){
     unsigned int pourcentage = 0;
 
 
-
     return pourcentage;
 }
 

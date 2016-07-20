@@ -17,6 +17,7 @@
 #include "Object.h"
 #include "LocalBinaryPattern.h"
 #include "ColorIntensityMean.h"
+#include "FirstSplitState.h"
 #include "Nao.h"
 
 
@@ -37,13 +38,16 @@ int main(int argc, char* argv[] )
     obj.show();
     LocalBinaryPattern lbp = LocalBinaryPattern();
     ColorIntensityMean cim = ColorIntensityMean();
-    cout << obj.extract_feature(lbp) << endl;
+    cout << obj.extract_feature(cim) << endl;
     Nao nao;
     nao.lookForObject();
-    nao.showObject();
-    ClassifierState* cs = new FirstSplitState();
-    string path = "resources\classifierStates\firstStateTraining";
-    nao.testClassifier(cs,path);
+    //nao.showObject();
+    string path = "resources/classifierStates/FirstColorState/colored/train";
+    vector<Feature*> featList;
+    featList.push_back(&cim);
+    FirstSplitState fss(featList);
+
+    nao.trainClassifier(&fss,path);
 
     waitKey(0);
     return 0;

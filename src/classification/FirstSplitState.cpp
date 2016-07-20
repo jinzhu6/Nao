@@ -1,8 +1,10 @@
 #include "FirstSplitState.h"
-
-FirstSplitState::FirstSplitState()
+#include "ColorIntensityMean.h"
+#include <iostream>
+FirstSplitState::FirstSplitState(vector<Feature*> featureList)
 {
-    //ctor
+    this->featureList = featureList;
+    storingPath = "resources/classifierStates/FirstColorState/values/vals.txt";
 }
 
 FirstSplitState::~FirstSplitState()
@@ -10,16 +12,4 @@ FirstSplitState::~FirstSplitState()
     //dtor
 }
 
-void FirstSplitState::storeValues()
-{
-}
-void FirstSplitState::loadValues()
-{
-}
-void FirstSplitState::train()
-{
-}
-unsigned int FirstSplitState::test()
-{
-    return 0;
-}
+
