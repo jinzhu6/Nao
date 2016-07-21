@@ -17,7 +17,7 @@ class ClassifierState
     protected:
         string storingPath;
         vector<Feature*> featureList;
-        vector<unsigned int> valueList;
+        vector< vector<unsigned int> > valueList;
 
     private:
 };
