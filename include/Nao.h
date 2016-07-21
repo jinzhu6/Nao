@@ -16,7 +16,7 @@ class Nao
         void showObject();
         void trainClassifier(ClassifierState* clS, string& trainPath);
         unsigned int testClassifier(ClassifierState* clS, string& testPath);
-
+        void showClassifierState(ClassifierState* clS);
     protected:
     private:
         ObjectExtractor objectExtractor;

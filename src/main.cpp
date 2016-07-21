@@ -39,9 +39,9 @@ int main(int argc, char* argv[] )
     featList.push_back(&cim);
     FirstSplitState fss(featList);
 
-    nao.trainClassifier(&fss,path);
-    //nao.;
-
+    //nao.trainClassifier(&fss,trainPath);
+    fss.loadValues();
+    fss.showValues();
     if(argc != 2) return 0;
 
     Mat img = imread(argv[1],1);

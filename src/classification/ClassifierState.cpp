@@ -25,15 +25,37 @@ ClassifierState::~ClassifierState()
 void ClassifierState::storeValues()
 {
     ofstream myfile;
-    myfile.open (storingPath, ios::out);
+    string currentPath = storingPath;
+    currentPath.append("positive.txt");
+    myfile.open (currentPath, ios::out);
 
     if (!myfile.is_open())
     {
         cout << "unable to open the file during store values\nPath : " << storingPath << endl;
         return;
     }
-    cout << "storing values in " << storingPath << endl;
-    for(auto valList = valueList.cbegin(); valList != valueList.cend(); valList++)
+    cout << "storing values in " << currentPath << endl;
+    for(auto valList = positiveValueList.cbegin(); valList != positiveValueList.cend(); valList++)
+    {
+        for(auto val = valList->cbegin(); val != valList->cend(); val++)
+        {
+            myfile << intToString(*val);
+            myfile << " ";
+        }
+        myfile << "\n";
+    }
+    myfile.close();
+    currentPath = storingPath;
+    currentPath.append("negative.txt");
+    myfile.open (currentPath, ios::out);
+
+    if (!myfile.is_open())
+    {
+        cout << "unable to open the file during store values\nPath : " << storingPath << endl;
+        return;
+    }
+    cout << "storing values in " << currentPath << endl;
+    for(auto valList = negativeValueList.cbegin(); valList != negativeValueList.cend(); valList++)
     {
         for(auto val = valList->cbegin(); val != valList->cend(); val++)
         {
@@ -57,8 +79,9 @@ int getInt(string s)
 void ClassifierState::loadValues()
 {
     string line;
-    ifstream myfile (storingPath);
-    string::size_type sz;
+    string currentPath = storingPath;
+    currentPath.append("positive.txt");
+    ifstream myfile (currentPath);
     if (myfile.is_open())
     {
         int i = 0;
@@ -79,13 +102,47 @@ void ClassifierState::loadValues()
                 }
                 i++;
             }
-            this->valueList.push_back(featureValues);
+            this->positiveValueList.push_back(featureValues);
+        }
+    }
+
+    currentPath = storingPath;
+    currentPath.append("negative.txt");
+    myfile.close();
+    myfile.open(currentPath);
+    if (myfile.is_open())
+    {
+        int i = 0;
+        string tmp = "";
+        while(getline(myfile,line))
+        {
+            vector<unsigned int> featureValues;
+            while(line[i] != '\0')
+            {
+                if(line[i] == ' ')
+                {
+                    featureValues.push_back(getInt(tmp));
+                    tmp = "";
+                }
+                else
+                {
+                    tmp.push_back(line[i]);
+                }
+                i++;
+            }
+            this->negativeValueList.push_back(featureValues);
         }
     }
 };
 
-void ClassifierState::train(string& path, const string& type)
+void ClassifierState::train(string path, const string& type)
 {
+    vector< vector< unsigned int> >* valueList;
+    if(type == "positive"){
+        valueList = &positiveValueList;
+    }else{
+        valueList = &negativeValueList;
+    }
     string line;
     path.append(type);
 
@@ -131,7 +188,7 @@ void ClassifierState::train(string& path, const string& type)
         {
             valList.push_back((*feature)->extractIn(*image));
         }
-        this->valueList.push_back(valList);
+        valueList->push_back(valList);
     }
 };
 
@@ -140,3 +197,25 @@ unsigned int ClassifierState::test()
 {
     return 0;
 };
+
+
+void ClassifierState::showValues(){
+    cout << "positive values : " << endl;
+
+    for(auto values = positiveValueList.cbegin(); values != positiveValueList.cend(); values++){
+        cout << "feature :" << endl;
+        for(auto value = values->cbegin(); value != values->cend(); value++){
+            cout << *value+0 << " ";
+        }
+        cout << endl;
+    }
+
+    cout << endl << "negative values : " << endl;
+    for(auto values = negativeValueList.cbegin(); values != negativeValueList.cend(); values++){
+        cout << "feature :" << endl;
+        for(auto value = values->cbegin(); value != values->cend(); value++){
+            cout << *value+0 << " ";
+        }
+        cout << endl;
+    }
+}

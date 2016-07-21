@@ -55,4 +55,8 @@ unsigned int Nao::testClassifier(ClassifierState* clS, string &testPath){
     return pourcentage;
 }
 
+void Nao::showClassifierState(ClassifierState* clS){
+    clS->showValues();
+}
+
 

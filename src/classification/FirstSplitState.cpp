@@ -4,7 +4,7 @@
 FirstSplitState::FirstSplitState(vector<Feature*> featureList)
 {
     this->featureList = featureList;
-    storingPath = "resources/classifierStates/FirstColorState/values/vals.txt";
+    storingPath = "resources/classifierStates/FirstColorState/values/";
 }
 
 FirstSplitState::~FirstSplitState()

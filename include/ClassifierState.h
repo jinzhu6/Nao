@@ -12,12 +12,16 @@ class ClassifierState
         virtual ~ClassifierState();
         virtual void storeValues();
         virtual void loadValues();
-        virtual void train(string& path, const string& type);
+        //virtual void loadValuesByType(const string& type);
+        virtual void train(string path, const string& type);
         virtual unsigned int test();
+        virtual void showValues();
     protected:
         string storingPath;
         vector<Feature*> featureList;
-        vector< vector<unsigned int> > valueList;
+        vector< vector<unsigned int> > positiveValueList;
+        vector< vector<unsigned int> > negativeValueList;
+
 
     private:
 };
