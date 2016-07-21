@@ -42,12 +42,13 @@ void Nao::lookForObject(){
 }
 
 
-void Nao::trainClassifier(ClassifierState* clS,const string &trainPath){
-    clS->train(trainPath);
+void Nao::trainClassifier(ClassifierState* clS,string &trainPath){
+    clS->train(trainPath, "positive");
+    clS->train(trainPath, "negative");
     clS->storeValues();
 }
 
-unsigned int Nao::testClassifier(ClassifierState* clS, const string &testPath){
+unsigned int Nao::testClassifier(ClassifierState* clS, string &testPath){
     unsigned int pourcentage = 0;
 
 

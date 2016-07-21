@@ -32,7 +32,7 @@ int main(int argc, char* argv[] )
     //****** init classification *******//
     Nao nao;
 
-    string path = "resources/classifierStates/FirstColorState/colored/train";
+    string trainPath = "resources/classifierStates/FirstColorState/train/";
     vector<Feature*> featList;
     ColorIntensityMean cim = ColorIntensityMean();
 

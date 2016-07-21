@@ -14,8 +14,8 @@ class Nao
         virtual ~Nao();
         void lookForObject();
         void showObject();
-        void trainClassifier(ClassifierState* clS, const string& trainPath);
-        unsigned int testClassifier(ClassifierState* clS, const string& testPath);
+        void trainClassifier(ClassifierState* clS, string& trainPath);
+        unsigned int testClassifier(ClassifierState* clS, string& testPath);
 
     protected:
     private:

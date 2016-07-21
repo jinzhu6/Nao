@@ -84,9 +84,11 @@ void ClassifierState::loadValues()
     }
 };
 
-void ClassifierState::train(const string& path)
+void ClassifierState::train(string& path, const string& type)
 {
     string line;
+    path.append(type);
+
     string numberPath = path;
     numberPath.append("/number.txt");
     string currentImagePath = path;
@@ -132,6 +134,7 @@ void ClassifierState::train(const string& path)
         this->valueList.push_back(valList);
     }
 };
+
 
 unsigned int ClassifierState::test()
 {

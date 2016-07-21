@@ -12,7 +12,7 @@ class ClassifierState
         virtual ~ClassifierState();
         virtual void storeValues();
         virtual void loadValues();
-        virtual void train(const string& path);
+        virtual void train(string& path, const string& type);
         virtual unsigned int test();
     protected:
         string storingPath;
