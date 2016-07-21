@@ -29,6 +29,19 @@ using namespace std;
 /** @function main */
 int main(int argc, char* argv[] )
 {
+    //****** init classification *******//
+    Nao nao;
+
+    string path = "resources/classifierStates/FirstColorState/colored/train";
+    vector<Feature*> featList;
+    ColorIntensityMean cim = ColorIntensityMean();
+
+    featList.push_back(&cim);
+    FirstSplitState fss(featList);
+
+    nao.trainClassifier(&fss,path);
+    //nao.;
+
     if(argc != 2) return 0;
 
     Mat img = imread(argv[1],1);
@@ -36,18 +49,10 @@ int main(int argc, char* argv[] )
 
     obj.preTreat();
     obj.show();
-    LocalBinaryPattern lbp = LocalBinaryPattern();
-    ColorIntensityMean cim = ColorIntensityMean();
     cout << obj.extract_feature(cim) << endl;
-    Nao nao;
     nao.lookForObject();
     //nao.showObject();
-    string path = "resources/classifierStates/FirstColorState/colored/train";
-    vector<Feature*> featList;
-    featList.push_back(&cim);
-    FirstSplitState fss(featList);
 
-    nao.trainClassifier(&fss,path);
 
     waitKey(0);
     return 0;
