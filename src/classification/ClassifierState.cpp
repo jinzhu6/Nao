@@ -78,6 +78,20 @@ int getInt(string s)
     return value;
 }
 
+void ClassifierState::classify(Object &object){
+    vector<unsigned int> objectValues;
+    for(auto feature = featureList.begin(); feature != featureList.end(); feature++){
+        objectValues.push_back((*feature)->extractIn(object.img));
+    }
+}
+
+void ClassifierState::compareToMean(vector<unsigned int>& valueList){
+
+
+}
+
+
+
 void ClassifierState::loadValues()
 {
     string line;
@@ -207,6 +221,7 @@ void ClassifierState::train(const string& type)
 
 unsigned int ClassifierState::test()
 {
+
     return 0;
 };
 

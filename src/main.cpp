@@ -44,6 +44,7 @@ int main(int argc, char* argv[] )
     //nao.trainClassifier();
     nao.loadClassifier();
     nao.showClassifierState();
+    nao.testClassifier();
 
     /*
     if(argc != 2) return 0;

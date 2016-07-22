@@ -25,8 +25,8 @@ void Classifier::train(){
     state->train("positive");
     state->train("negative");
 }
-void Classifier::test(){
-
+unsigned int Classifier::test(){
+    return state->test();
 }
 bool Classifier::classify(Object& o){
 

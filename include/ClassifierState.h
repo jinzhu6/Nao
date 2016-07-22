@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Feature.h"
+#include "Object.h"
 
 // state classes that contains the features
 class ClassifierState
@@ -12,11 +13,12 @@ class ClassifierState
         virtual ~ClassifierState();
         virtual void storeValues();
         virtual void loadValues();
-        //virtual void loadValuesByType(const string& type);
         virtual void train(const string& type);
         virtual unsigned int test();
         virtual void showValues();
         virtual void showMeans();
+        virtual void classify(Object &object);
+        virtual void compareToMean(vector<unsigned int>& valueList);
     protected:
         string path;
         vector<Feature*> featureList;

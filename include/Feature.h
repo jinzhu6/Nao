@@ -7,8 +7,8 @@ using namespace cv;
 class Feature
 {
     public:
-        Feature();
-        virtual ~Feature();
+        Feature(){};
+        virtual ~Feature(){};
         virtual int extractIn(Mat& img) = 0;
 
     protected:

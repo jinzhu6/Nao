@@ -49,11 +49,10 @@ void Nao::trainClassifier(){
     classifier->train();
 }
 
-unsigned int Nao::testClassifier(ClassifierState* clS, string &testPath){
-    unsigned int pourcentage = 0;
+unsigned int Nao::testClassifier(){
 
+    return classifier->test();
 
-    return pourcentage;
 }
 
 void Nao::showClassifierState(){
