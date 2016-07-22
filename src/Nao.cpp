@@ -41,6 +41,9 @@ void Nao::lookForObject(){
     lastDetectedObject = obj;
 }
 
+void Nao::loadClassifier(){
+    classifier->load();
+}
 
 void Nao::trainClassifier(){
     classifier->train();
@@ -53,8 +56,8 @@ unsigned int Nao::testClassifier(ClassifierState* clS, string &testPath){
     return pourcentage;
 }
 
-void Nao::showClassifierState(ClassifierState* clS){
-    clS->showValues();
+void Nao::showClassifierState(){
+    classifier->showCurrentState();
 }
 
 

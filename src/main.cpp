@@ -41,12 +41,11 @@ int main(int argc, char* argv[] )
 
     //*********** Lanching **************//
 
-    nao.trainClassifier();
-    //fss.loadValues();
-    fss.showValues();
-    //fss.computeMeans();
-    fss.showMeans();
-    //nao.testClassifier();
+    //nao.trainClassifier();
+    nao.loadClassifier();
+    nao.showClassifierState();
+
+    /*
     if(argc != 2) return 0;
 
     Mat img = imread(argv[1],1);
@@ -57,7 +56,7 @@ int main(int argc, char* argv[] )
     cout << obj.extract_feature(cim) << endl;
     nao.lookForObject();
     //nao.showObject();
-
+*/
 
     waitKey(0);
     return 0;

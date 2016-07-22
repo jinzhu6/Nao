@@ -137,6 +137,7 @@ void ClassifierState::loadValues()
             this->negativeValueList.push_back(featureValues);
         }
     }
+    computeMeans();
 };
 
 void ClassifierState::train(const string& type)
@@ -250,6 +251,8 @@ unsigned int getMean(const vector<unsigned int>* listOfValues)
 
 void ClassifierState::computeMeans()
 {
+    positiveMeans.clear();
+    negativeMeans.clear();
     cout << "computation of the means" << endl;
     for(auto values = positiveValueList.cbegin(); values != positiveValueList.cend(); values++)
     {

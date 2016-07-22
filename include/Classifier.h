@@ -12,11 +12,13 @@ class Classifier
         Classifier();
         Classifier(ClassifierState* clS);
         //Classifier(char* trainingPath,char* testingPath):trainingPath(trainingPath),testingPath(testingPath){};
+        void load();
         void train();
         void test();
         bool classify(Object& o);
         virtual ~Classifier();
         void setState(ClassifierState* clS);
+        void showCurrentState();
     protected:
     private:
         ClassifierState* state;

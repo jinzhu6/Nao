@@ -18,7 +18,9 @@ Classifier::Classifier(ClassifierState* state){
 void Classifier::setState(ClassifierState* clS){
     this->state = clS;
 }
-
+void Classifier::load(){
+    state->loadValues();
+}
 void Classifier::train(){
     state->train("positive");
     state->train("negative");
@@ -28,4 +30,9 @@ void Classifier::test(){
 }
 bool Classifier::classify(Object& o){
 
+}
+
+void Classifier::showCurrentState(){
+    state->showValues();
+    state->showMeans();
 }
