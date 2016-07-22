@@ -13,17 +13,22 @@ class ClassifierState
         virtual void storeValues();
         virtual void loadValues();
         //virtual void loadValuesByType(const string& type);
-        virtual void train(string path, const string& type);
+        virtual void train(const string& type);
         virtual unsigned int test();
         virtual void showValues();
+        virtual void showMeans();
     protected:
-        string storingPath;
+        string path;
         vector<Feature*> featureList;
         vector< vector<unsigned int> > positiveValueList;
         vector< vector<unsigned int> > negativeValueList;
+        vector<unsigned int> positiveMeans;
+        vector<unsigned int> negativeMeans;
 
-
+        void computeMeans();
     private:
+
+
 };
 
 #endif // CLASSIFIERSTATE_H

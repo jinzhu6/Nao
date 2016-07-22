@@ -190,6 +190,8 @@ void ClassifierState::train(string path, const string& type)
         }
         valueList->push_back(valList);
     }
+    cout << "computing means:" << endl;
+    computeMeans();
 };
 
 
@@ -219,3 +221,41 @@ void ClassifierState::showValues(){
         cout << endl;
     }
 }
+
+
+unsigned int getMean(const vector<unsigned int>* listOfValues){
+    unsigned int mean = 0;
+    for(auto val = listOfValues->cbegin(); val != listOfValues->cend(); val++){
+        mean += *val;
+    }
+    mean /= listOfValues->size();
+    return mean;
+}
+
+void ClassifierState::computeMeans(){
+    cout << "computation of the means" << endl;
+    for(auto values = positiveValueList.cbegin(); values != positiveValueList.cend(); values++){
+        positiveMeans.push_back(getMean(&(*values)));
+        cout << getMean(&(*values)) << " ";
+    }
+    cout << endl;
+    for(auto values = negativeValueList.cbegin(); values != negativeValueList.cend(); values++){
+        negativeMeans.push_back(getMean(&(*values)));
+    }
+}
+
+void ClassifierState::showMeans(){
+
+    cout << "Positive features :" << endl;
+    for(auto val = positiveMeans.cbegin(); val != positiveMeans.cend(); val++){
+        cout << *val << " ";
+    }
+    cout << endl << "Negative features :" << endl;
+    for(auto val = negativeMeans.cbegin(); val != negativeMeans.cend(); val++){
+        cout << *val << " ";
+    }
+    cout << endl;
+}
+
+
+

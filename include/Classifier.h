@@ -2,8 +2,7 @@
 #define CLASSIFIER_H
 
 #include "ClassifierState.h"
-#include "FirstSplitState.h"
-
+#include "Object.h"
 
 using namespace std;
 
@@ -11,13 +10,15 @@ class Classifier
 {
     public:
         Classifier();
-        Classifier(char* trainingPath,char* testingPath):trainingPath(trainingPath),testingPath(testingPath){};
+        Classifier(ClassifierState* clS);
+        //Classifier(char* trainingPath,char* testingPath):trainingPath(trainingPath),testingPath(testingPath){};
+        void train();
+        void test();
+        bool classify(Object& o);
         virtual ~Classifier();
         void setState(ClassifierState* clS);
     protected:
     private:
-        string trainingPath;
-        string testingPath;
         ClassifierState* state;
 };
 
