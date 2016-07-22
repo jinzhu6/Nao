@@ -25,10 +25,10 @@ Nao::~Nao()
 {
     //dtor
 }
-
+/*
 Nao::Nao(ClassifierState* cls){
     classifier.setState(cls);
-}
+}*/
 
 void Nao::showObject(){
     lastDetectedObject.show();
@@ -42,10 +42,8 @@ void Nao::lookForObject(){
 }
 
 
-void Nao::trainClassifier(ClassifierState* clS,string &trainPath){
-    clS->train(trainPath, "positive");
-    clS->train(trainPath, "negative");
-    clS->storeValues();
+void Nao::trainClassifier(){
+    classifier->train();
 }
 
 unsigned int Nao::testClassifier(ClassifierState* clS, string &testPath){

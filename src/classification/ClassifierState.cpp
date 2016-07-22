@@ -25,13 +25,14 @@ ClassifierState::~ClassifierState()
 void ClassifierState::storeValues()
 {
     ofstream myfile;
-    string currentPath = storingPath;
+    string currentPath = path;
+    currentPath.append("values/");
     currentPath.append("positive.txt");
     myfile.open (currentPath, ios::out);
 
     if (!myfile.is_open())
     {
-        cout << "unable to open the file during store values\nPath : " << storingPath << endl;
+        cout << "unable to open the file during store values\nPath : " << currentPath << endl;
         return;
     }
     cout << "storing values in " << currentPath << endl;
@@ -45,13 +46,14 @@ void ClassifierState::storeValues()
         myfile << "\n";
     }
     myfile.close();
-    currentPath = storingPath;
+    currentPath = path;
+    currentPath.append("values/");
     currentPath.append("negative.txt");
     myfile.open (currentPath, ios::out);
 
     if (!myfile.is_open())
     {
-        cout << "unable to open the file during store values\nPath : " << storingPath << endl;
+        cout << "unable to open the file during store values\nPath : " << currentPath << endl;
         return;
     }
     cout << "storing values in " << currentPath << endl;
@@ -79,7 +81,8 @@ int getInt(string s)
 void ClassifierState::loadValues()
 {
     string line;
-    string currentPath = storingPath;
+    string currentPath = path;
+    currentPath.append("values/");
     currentPath.append("positive.txt");
     ifstream myfile (currentPath);
     if (myfile.is_open())
@@ -106,7 +109,8 @@ void ClassifierState::loadValues()
         }
     }
 
-    currentPath = storingPath;
+    currentPath = path;
+    currentPath.append("values/");
     currentPath.append("negative.txt");
     myfile.close();
     myfile.open(currentPath);
@@ -135,21 +139,26 @@ void ClassifierState::loadValues()
     }
 };
 
-void ClassifierState::train(string path, const string& type)
+void ClassifierState::train(const string& type)
 {
     vector< vector< unsigned int> >* valueList;
-    if(type == "positive"){
+    if(type == "positive")
+    {
         valueList = &positiveValueList;
-    }else{
+    }
+    else
+    {
         valueList = &negativeValueList;
     }
     string line;
-    path.append(type);
+    string trainPath = path;
+    trainPath.append("train/");
+    trainPath.append(type);
 
-    string numberPath = path;
+    string numberPath = trainPath;
     numberPath.append("/number.txt");
-    string currentImagePath = path;
-    cout << "Number of images in the folder " << path << " :\n";
+    string currentImagePath = trainPath;
+    cout << "Number of images in the folder " << trainPath << " :\n";
     ifstream myfile (numberPath);
     int numberOfImages = 0;
     Mat currentImage;
@@ -173,7 +182,7 @@ void ClassifierState::train(string path, const string& type)
             {
                 cout << "fail when opening the file :\n" << currentImagePath << endl;
             }
-            currentImagePath = path;
+            currentImagePath = trainPath;
         }
     }
     else
@@ -201,21 +210,26 @@ unsigned int ClassifierState::test()
 };
 
 
-void ClassifierState::showValues(){
+void ClassifierState::showValues()
+{
     cout << "positive values : " << endl;
 
-    for(auto values = positiveValueList.cbegin(); values != positiveValueList.cend(); values++){
+    for(auto values = positiveValueList.cbegin(); values != positiveValueList.cend(); values++)
+    {
         cout << "feature :" << endl;
-        for(auto value = values->cbegin(); value != values->cend(); value++){
+        for(auto value = values->cbegin(); value != values->cend(); value++)
+        {
             cout << *value+0 << " ";
         }
         cout << endl;
     }
 
     cout << endl << "negative values : " << endl;
-    for(auto values = negativeValueList.cbegin(); values != negativeValueList.cend(); values++){
+    for(auto values = negativeValueList.cbegin(); values != negativeValueList.cend(); values++)
+    {
         cout << "feature :" << endl;
-        for(auto value = values->cbegin(); value != values->cend(); value++){
+        for(auto value = values->cbegin(); value != values->cend(); value++)
+        {
             cout << *value+0 << " ";
         }
         cout << endl;
@@ -223,35 +237,43 @@ void ClassifierState::showValues(){
 }
 
 
-unsigned int getMean(const vector<unsigned int>* listOfValues){
+unsigned int getMean(const vector<unsigned int>* listOfValues)
+{
     unsigned int mean = 0;
-    for(auto val = listOfValues->cbegin(); val != listOfValues->cend(); val++){
+    for(auto val = listOfValues->cbegin(); val != listOfValues->cend(); val++)
+    {
         mean += *val;
     }
     mean /= listOfValues->size();
     return mean;
 }
 
-void ClassifierState::computeMeans(){
+void ClassifierState::computeMeans()
+{
     cout << "computation of the means" << endl;
-    for(auto values = positiveValueList.cbegin(); values != positiveValueList.cend(); values++){
+    for(auto values = positiveValueList.cbegin(); values != positiveValueList.cend(); values++)
+    {
         positiveMeans.push_back(getMean(&(*values)));
         cout << getMean(&(*values)) << " ";
     }
     cout << endl;
-    for(auto values = negativeValueList.cbegin(); values != negativeValueList.cend(); values++){
+    for(auto values = negativeValueList.cbegin(); values != negativeValueList.cend(); values++)
+    {
         negativeMeans.push_back(getMean(&(*values)));
     }
 }
 
-void ClassifierState::showMeans(){
+void ClassifierState::showMeans()
+{
 
     cout << "Positive features :" << endl;
-    for(auto val = positiveMeans.cbegin(); val != positiveMeans.cend(); val++){
+    for(auto val = positiveMeans.cbegin(); val != positiveMeans.cend(); val++)
+    {
         cout << *val << " ";
     }
     cout << endl << "Negative features :" << endl;
-    for(auto val = negativeMeans.cbegin(); val != negativeMeans.cend(); val++){
+    for(auto val = negativeMeans.cbegin(); val != negativeMeans.cend(); val++)
+    {
         cout << *val << " ";
     }
     cout << endl;

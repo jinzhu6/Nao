@@ -4,23 +4,23 @@
 #include "ObjectExtractor.h"
 #include "Object.h"
 #include "ClassifierState.h"
-
+#include "Classifier.h"
 
 class Nao
 {
     public:
         Nao();
-        Nao(ClassifierState* cls);
+        Nao(Classifier* classifier):classifier(classifier){};
         virtual ~Nao();
         void lookForObject();
         void showObject();
-        void trainClassifier(ClassifierState* clS, string& trainPath);
+        void trainClassifier();
         unsigned int testClassifier(ClassifierState* clS, string& testPath);
         void showClassifierState(ClassifierState* clS);
     protected:
     private:
         ObjectExtractor objectExtractor;
-        Classifier classifier;
+        Classifier* classifier;
         Object lastDetectedObject;
 };
 

@@ -30,18 +30,18 @@ using namespace std;
 int main(int argc, char* argv[] )
 {
     //****** init classification *******//
-    Nao nao;
 
-    string trainPath = "resources/classifierStates/FirstColorState/train/";
+
     vector<Feature*> featList;
     ColorIntensityMean cim = ColorIntensityMean();
-
     featList.push_back(&cim);
     FirstSplitState fss(featList);
+    Classifier classifier(&fss);
+    Nao nao(&classifier);
 
     //*********** Lanching **************//
 
-    nao.trainClassifier(&fss,trainPath);
+    nao.trainClassifier();
     //fss.loadValues();
     fss.showValues();
     //fss.computeMeans();

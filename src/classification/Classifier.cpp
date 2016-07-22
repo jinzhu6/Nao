@@ -11,7 +11,8 @@ Classifier::~Classifier()
 {
     //dtor
 }
-Classifier::Classifier(ClassifierState* state):state(state){
+Classifier::Classifier(ClassifierState* state){
+    setState(state);
 }
 
 void Classifier::setState(ClassifierState* clS){
