@@ -20,18 +20,13 @@
 #include "FirstSplitState.h"
 #include "Nao.h"
 
-
 using namespace cv;
 using namespace std;
-
-
 
 /** @function main */
 int main(int argc, char* argv[] )
 {
     //****** init classification *******//
-
-
     vector<Feature*> featList;
     ColorIntensityMean cim = ColorIntensityMean();
     featList.push_back(&cim);
@@ -40,7 +35,6 @@ int main(int argc, char* argv[] )
     Nao nao(&classifier);
 
     //*********** Lanching **************//
-
     nao.trainClassifier();
     //nao.loadClassifier();
     nao.showClassifierState();

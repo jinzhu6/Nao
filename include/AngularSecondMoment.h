@@ -9,8 +9,7 @@ class AngularSecondMoment : public Feature
     public:
         AngularSecondMoment();
         virtual ~AngularSecondMoment();
-
-        int extractIn(Mat& img);
+        float extractIn(Mat& img);
 
     protected:
     private:

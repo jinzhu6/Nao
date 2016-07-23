@@ -37,7 +37,7 @@ void LocalBinaryPattern::compute(Mat& src)
     }
 }
 
- int LocalBinaryPattern::extractIn(Mat& img){
+ float LocalBinaryPattern::extractIn(Mat& img){
     compute<uchar>(img);
     cv::imshow("image computed", resultingImage);
     return 0;

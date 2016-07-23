@@ -7,7 +7,7 @@ class LocalBinaryPattern : public Feature
     public:
         LocalBinaryPattern();
         virtual ~LocalBinaryPattern();
-        int extractIn(Mat& img);
+        float extractIn(Mat& img);
     protected:
     private:
         template <typename _Tp>

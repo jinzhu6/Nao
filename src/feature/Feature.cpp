@@ -2,8 +2,7 @@
 #include "iostream"
 
 using namespace std;
-unsigned int Feature::normalise(){
-    cout << "value : " << value << endl << "Divider : " << normalisationDivider << endl;
+float Feature::normalise(){
     return value /=normalisationDivider;
 
 }

@@ -9,7 +9,7 @@ class ColorIntensityMean : public Feature
     public:
         ColorIntensityMean();
         virtual ~ColorIntensityMean();
-        virtual int extractIn(Mat& img);
+        virtual float extractIn(Mat& img);
 
     protected:
 

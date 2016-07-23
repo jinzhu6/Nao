@@ -9,13 +9,13 @@ class Feature
     public:
         Feature(){};
         virtual ~Feature(){};
-        virtual int extractIn(Mat& img) = 0;
+        virtual float extractIn(Mat& img) = 0;
 
     protected:
         Mat resultingImage;
         float value = 0;
         int normalisationDivider;
-        virtual unsigned int normalise();
+        virtual float normalise();
 
 
     private:

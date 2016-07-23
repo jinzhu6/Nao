@@ -44,10 +44,10 @@ void ColorIntensityMean::compute(Mat& src)
     cout << "value normalised : " << value << endl;
 }
 
-int ColorIntensityMean::extractIn(Mat& img)
+float ColorIntensityMean::extractIn(Mat& img)
 {
     compute<uint32_t,Vec3b>(img);
-
+    cout << "after extraction of value : " << value << endl;
     //cv::imshow("image computed", resultingImage);
 
     return value;

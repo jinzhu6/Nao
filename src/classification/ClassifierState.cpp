@@ -235,7 +235,7 @@ void ClassifierState::showValues()
         cout << "feature :" << endl;
         for(auto value = values->cbegin(); value != values->cend(); value++)
         {
-            cout << *value+0 << " ";
+            cout << *value << " ";
         }
         cout << endl;
     }
@@ -246,14 +246,14 @@ void ClassifierState::showValues()
         cout << "feature :" << endl;
         for(auto value = values->cbegin(); value != values->cend(); value++)
         {
-            cout << *value+0 << " ";
+            cout << *value << " ";
         }
         cout << endl;
     }
 }
 
 
-unsigned int getMean(const vector<float>* listOfValues)
+float getMean(const vector<float>* listOfValues)
 {
     float mean = 0;
     for(auto val = listOfValues->cbegin(); val != listOfValues->cend(); val++)
