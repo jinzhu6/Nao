@@ -18,6 +18,8 @@ class Object
         void noPreTreat();
         void saveResult(Mat& img);
         Object operator=(const Object o);
+
+
         Mat img;
     protected:
 

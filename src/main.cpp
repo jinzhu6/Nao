@@ -41,10 +41,11 @@ int main(int argc, char* argv[] )
 
     //*********** Lanching **************//
 
-    //nao.trainClassifier();
-    nao.loadClassifier();
+    nao.trainClassifier();
+    //nao.loadClassifier();
     nao.showClassifierState();
-    nao.testClassifier();
+    //nao.testClassifier();
+    nao.classifyObject();
 
     /*
     if(argc != 2) return 0;

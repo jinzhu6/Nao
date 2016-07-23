@@ -13,7 +13,10 @@ class Feature
 
     protected:
         Mat resultingImage;
-        int value = 0;
+        float value = 0;
+        int normalisationDivider;
+        virtual unsigned int normalise();
+
 
     private:
         template <typename _Tp>

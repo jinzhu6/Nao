@@ -6,7 +6,7 @@
 #include "opencv2/highgui.hpp"
 
 using namespace std;
-string intToString (int a)
+string intToString (float a)
 {
     ostringstream temp;
     temp<<a;
@@ -85,7 +85,7 @@ void ClassifierState::classify(Object &object){
     }
 }
 
-void ClassifierState::compareToMean(vector<unsigned int>& valueList){
+void ClassifierState::compareToMean(vector<float>& valueList){
 
 
 }
@@ -105,7 +105,7 @@ void ClassifierState::loadValues()
         string tmp = "";
         while(getline(myfile,line))
         {
-            vector<unsigned int> featureValues;
+            vector<float> featureValues;
             while(line[i] != '\0')
             {
                 if(line[i] == ' ')
@@ -134,7 +134,7 @@ void ClassifierState::loadValues()
         string tmp = "";
         while(getline(myfile,line))
         {
-            vector<unsigned int> featureValues;
+            vector<float> featureValues;
             while(line[i] != '\0')
             {
                 if(line[i] == ' ')
@@ -156,7 +156,7 @@ void ClassifierState::loadValues()
 
 void ClassifierState::train(const string& type)
 {
-    vector< vector< unsigned int> >* valueList;
+    vector< vector< float> >* valueList;
     if(type == "positive")
     {
         valueList = &positiveValueList;
@@ -206,7 +206,7 @@ void ClassifierState::train(const string& type)
     }
     for(auto feature = featureList.begin(); feature != featureList.end(); feature++)
     {
-        vector<unsigned int> valList;
+        vector<float> valList;
 
         for(auto image = images.begin(); image != images.end(); image++)
         {
@@ -253,9 +253,9 @@ void ClassifierState::showValues()
 }
 
 
-unsigned int getMean(const vector<unsigned int>* listOfValues)
+unsigned int getMean(const vector<float>* listOfValues)
 {
-    unsigned int mean = 0;
+    float mean = 0;
     for(auto val = listOfValues->cbegin(); val != listOfValues->cend(); val++)
     {
         mean += *val;

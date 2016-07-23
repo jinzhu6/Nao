@@ -4,6 +4,7 @@
 using namespace std;
 ColorIntensityMean::ColorIntensityMean()
 {
+    normalisationDivider = 255;
 }
 
 ColorIntensityMean::~ColorIntensityMean()
@@ -39,6 +40,8 @@ void ColorIntensityMean::compute(Mat& src)
     }
 
     value /= src.rows;
+    normalise();
+    cout << "value normalised : " << value << endl;
 }
 
 int ColorIntensityMean::extractIn(Mat& img)
@@ -49,3 +52,6 @@ int ColorIntensityMean::extractIn(Mat& img)
 
     return value;
 }
+
+
+

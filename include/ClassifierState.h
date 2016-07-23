@@ -18,14 +18,14 @@ class ClassifierState
         virtual void showValues();
         virtual void showMeans();
         virtual void classify(Object &object);
-        virtual void compareToMean(vector<unsigned int>& valueList);
+        virtual void compareToMean(vector<float>& valueList);
     protected:
         string path;
         vector<Feature*> featureList;
-        vector< vector<unsigned int> > positiveValueList;
-        vector< vector<unsigned int> > negativeValueList;
-        vector<unsigned int> positiveMeans;
-        vector<unsigned int> negativeMeans;
+        vector< vector<float> > positiveValueList;
+        vector< vector<float> > negativeValueList;
+        vector<float> positiveMeans;
+        vector<float> negativeMeans;
 
         void computeMeans();
     private:

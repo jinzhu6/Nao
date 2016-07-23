@@ -45,6 +45,15 @@ void Nao::loadClassifier(){
     classifier->load();
 }
 
+void Nao::classifyObject(){
+    if(lastDetectedObject.img.data){
+        classifier->classify(lastDetectedObject);
+    }else{
+        cout << "No object found for classification" << endl;
+    }
+}
+
+
 void Nao::trainClassifier(){
     classifier->train();
 }

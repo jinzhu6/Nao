@@ -16,6 +16,7 @@ class Nao
         void showObject();
         void trainClassifier();
         void loadClassifier();
+        void classifyObject();
         unsigned int testClassifier();
         void showClassifierState();
     protected:
