@@ -12,6 +12,7 @@ class Nao
         Nao();
         Nao(Classifier* classifier):classifier(classifier){};
         virtual ~Nao();
+        void init();
         void lookForObject();
         void showObject();
         void trainClassifier();

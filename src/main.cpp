@@ -23,6 +23,10 @@
 using namespace cv;
 using namespace std;
 
+
+
+
+
 /** @function main */
 int main(int argc, char* argv[] )
 {
@@ -42,9 +46,9 @@ int main(int argc, char* argv[] )
     nao.showObject();
     //nao.testClassifier();
     if(nao.classifyObject()){
-            cout << "there is an apple" << endl;
+            cout << "this is an apple" << endl;
     }else{
-            cout << "there is a glass or a cup" << endl;
+            cout << "this is a glass or a cup" << endl;
     }
 
     /*

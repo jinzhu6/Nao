@@ -25,18 +25,18 @@ Nao::~Nao()
 {
     //dtor
 }
-/*
-Nao::Nao(ClassifierState* cls){
-    classifier.setState(cls);
-}*/
 
+void Nao::init(){
+
+
+}
 void Nao::showObject(){
     lastDetectedObject.show();
 }
 
 
 void Nao::lookForObject(){
-    Mat img = imread("resources/Glass.jpg",1);
+    Mat img = imread("resources/Cup.jpg",1);
     Object obj(img,"glassLBP");
     lastDetectedObject = obj;
 }
