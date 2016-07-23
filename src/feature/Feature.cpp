@@ -4,5 +4,4 @@
 using namespace std;
 float Feature::normalise(){
     return value /=normalisationDivider;
-
 }

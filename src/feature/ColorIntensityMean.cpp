@@ -41,13 +41,11 @@ void ColorIntensityMean::compute(Mat& src)
 
     value /= src.rows;
     normalise();
-    cout << "value normalised : " << value << endl;
 }
 
 float ColorIntensityMean::extractIn(Mat& img)
 {
     compute<uint32_t,Vec3b>(img);
-    cout << "after extraction of value : " << value << endl;
     //cv::imshow("image computed", resultingImage);
 
     return value;

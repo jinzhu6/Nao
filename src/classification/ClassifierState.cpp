@@ -78,14 +78,38 @@ int getInt(string s)
     return value;
 }
 
-void ClassifierState::classify(Object &object){
-    vector<unsigned int> objectValues;
-    for(auto feature = featureList.begin(); feature != featureList.end(); feature++){
+bool ClassifierState::classify(Object &object)
+{
+    vector<float> objectValues;
+    for(auto feature = featureList.begin(); feature != featureList.end(); feature++)
+    {
         objectValues.push_back((*feature)->extractIn(object.img));
     }
+    float distanceToPositiveMean = 0;
+    int i = 0;
+    for(auto val = objectValues.begin(); val != objectValues.end(); val++)
+    {
+        distanceToPositiveMean += abs(positiveMeans[i] - *val);
+        i++;
+    }
+    distanceToPositiveMean /= featureList.size();
+    cout << "distance to positive mean : " << distanceToPositiveMean << endl;
+    float distanceToNegativeMean = 0;
+    i = 0;
+    for(auto val = objectValues.begin(); val != objectValues.end(); val++)
+    {
+        distanceToNegativeMean += abs(negativeMeans[i] - *val);
+        i++;
+    }
+    distanceToNegativeMean /= featureList.size();
+    cout << "distance to negative mean : " << distanceToNegativeMean << endl;
+
+    return distanceToNegativeMean > distanceToPositiveMean;
+
 }
 
-void ClassifierState::compareToMean(vector<float>& valueList){
+void ClassifierState::compareToMean(vector<float>& valueList)
+{
 
 
 }

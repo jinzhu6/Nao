@@ -38,6 +38,8 @@ int main(int argc, char* argv[] )
     nao.trainClassifier();
     //nao.loadClassifier();
     nao.showClassifierState();
+    nao.lookForObject();
+    nao.showObject();
     //nao.testClassifier();
     nao.classifyObject();
 
@@ -50,8 +52,6 @@ int main(int argc, char* argv[] )
     obj.preTreat();
     obj.show();
     cout << obj.extract_feature(cim) << endl;
-    nao.lookForObject();
-    //nao.showObject();
 */
 
     waitKey(0);

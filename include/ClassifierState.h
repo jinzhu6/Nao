@@ -17,7 +17,7 @@ class ClassifierState
         virtual unsigned int test();
         virtual void showValues();
         virtual void showMeans();
-        virtual void classify(Object &object);
+        virtual bool classify(Object &object);
         virtual void compareToMean(vector<float>& valueList);
     protected:
         string path;
