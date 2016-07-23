@@ -24,6 +24,7 @@ void Classifier::load(){
 void Classifier::train(){
     state->train("positive");
     state->train("negative");
+    state->storeValues();
 }
 unsigned int Classifier::test(){
     return state->test();

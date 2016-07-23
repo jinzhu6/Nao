@@ -6,10 +6,10 @@
 #include "opencv2/highgui.hpp"
 
 using namespace std;
-string intToString (float a)
+string floatToString (float a)
 {
     ostringstream temp;
-    temp<<a;
+    temp<<a+0.0;
     return temp.str();
 }
 ClassifierState::ClassifierState()
@@ -40,7 +40,7 @@ void ClassifierState::storeValues()
     {
         for(auto val = valList->cbegin(); val != valList->cend(); val++)
         {
-            myfile << intToString(*val);
+            myfile << floatToString(*val);
             myfile << " ";
         }
         myfile << "\n";
@@ -61,7 +61,7 @@ void ClassifierState::storeValues()
     {
         for(auto val = valList->cbegin(); val != valList->cend(); val++)
         {
-            myfile << intToString(*val);
+            myfile << floatToString(*val);
             myfile << " ";
         }
         myfile << "\n";
@@ -70,11 +70,11 @@ void ClassifierState::storeValues()
     myfile.close();
 };
 
-int getInt(string s)
+float getFloat(string s)
 {
-    int value;
+    float value;
     const char* txtValue = s.c_str();
-    sscanf ( txtValue, "%d", &value );
+    sscanf ( txtValue, "%f", &value );
     return value;
 }
 
@@ -134,7 +134,7 @@ void ClassifierState::loadValues()
             {
                 if(line[i] == ' ')
                 {
-                    featureValues.push_back(getInt(tmp));
+                    featureValues.push_back(getFloat(tmp));
                     tmp = "";
                 }
                 else
@@ -163,7 +163,7 @@ void ClassifierState::loadValues()
             {
                 if(line[i] == ' ')
                 {
-                    featureValues.push_back(getInt(tmp));
+                    featureValues.push_back(getFloat(tmp));
                     tmp = "";
                 }
                 else
@@ -205,12 +205,12 @@ void ClassifierState::train(const string& type)
     if (myfile.is_open())
     {
         getline(myfile,line);
-        numberOfImages = getInt(line);
+        numberOfImages = getFloat(line);
         cout << numberOfImages+0 << endl;
         for(int i = 0; i < numberOfImages; i++)
         {
             currentImagePath.append("/image");
-            currentImagePath.append(intToString(i));
+            currentImagePath.append(floatToString(i));
             currentImagePath.append(".jpg");
             currentImage = imread(currentImagePath);
             if(currentImage.data)
