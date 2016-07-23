@@ -41,7 +41,11 @@ int main(int argc, char* argv[] )
     nao.lookForObject();
     nao.showObject();
     //nao.testClassifier();
-    nao.classifyObject();
+    if(nao.classifyObject()){
+            cout << "there is an apple" << endl;
+    }else{
+            cout << "there is a glass or a cup" << endl;
+    }
 
     /*
     if(argc != 2) return 0;
