@@ -5,12 +5,15 @@
 #include "Object.h"
 #include "ClassifierState.h"
 #include "Classifier.h"
+#include "ColorIntensityMean.h"
+#include "GlassCupSplitState.hpp"
+#include "ShapeFeature.hpp"
+#include "FirstSplitState.h"
 
 class Nao
 {
     public:
         Nao();
-        Nao(Classifier* classifier):classifier(classifier){};
         virtual ~Nao();
         void init();
         void lookForObject();
@@ -22,9 +25,19 @@ class Nao
         void showClassifierState();
     protected:
     private:
-        ObjectExtractor objectExtractor;
-        Classifier* classifier;
+        Classifier classifier;
         Object lastDetectedObject;
+
+        FirstSplitState fss;
+        GlassCupSplitState gcs;
+
+        vector<Feature*> firstStateFeatList;
+        vector<Feature*> glassCupSplitList;
+
+        ColorIntensityMean colorIntensityMean;
+        ShapeFeature shapeFeature;
+
+
 };
 
 #endif // NAO_H

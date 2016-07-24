@@ -6,9 +6,7 @@
 #include "Classifier.h"
 #include "test.h"
 #include "Object.h"
-#include "LocalBinaryPattern.h"
-#include "AngularSecondMoment.h"
-#include "ColorIntensityMean.h"
+
 
 #include <iostream>
 using namespace cv;
@@ -17,8 +15,7 @@ using namespace std;
 
 Nao::Nao()
 {
-
-
+    init();
 }
 
 Nao::~Nao()
@@ -27,8 +24,13 @@ Nao::~Nao()
 }
 
 void Nao::init(){
+    firstStateFeatList.push_back(&colorIntensityMean);
+    glassCupSplitList.push_back(&shapeFeature);
 
+    fss = FirstSplitState(&firstStateFeatList);
+    gcs = GlassCupSplitState(&glassCupSplitList);
 
+    classifier = Classifier(&fss);
 }
 void Nao::showObject(){
     lastDetectedObject.show();
@@ -42,12 +44,12 @@ void Nao::lookForObject(){
 }
 
 void Nao::loadClassifier(){
-    classifier->load();
+    classifier.load();
 }
 
 bool Nao::classifyObject(){
     if(lastDetectedObject.img.data){
-        return classifier->classify(lastDetectedObject);
+        return classifier.classify(lastDetectedObject);
     }else{
         cout << "No object found for classification" << endl;
         return 0;
@@ -56,17 +58,15 @@ bool Nao::classifyObject(){
 
 
 void Nao::trainClassifier(){
-    classifier->train();
+    classifier.train();
 }
 
 unsigned int Nao::testClassifier(){
-
-    return classifier->test();
-
+    return classifier.test();
 }
 
 void Nao::showClassifierState(){
-    classifier->showCurrentState();
+    classifier.showCurrentState();
 }
 
 

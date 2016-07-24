@@ -12,10 +12,7 @@ string floatToString (float a)
     temp<<a+0.0;
     return temp.str();
 }
-ClassifierState::ClassifierState()
-{
-    //ctor
-}
+
 
 ClassifierState::~ClassifierState()
 {
@@ -81,7 +78,7 @@ float getFloat(string s)
 bool ClassifierState::classify(Object &object)
 {
     vector<float> objectValues;
-    for(auto feature = featureList.begin(); feature != featureList.end(); feature++)
+    for(auto feature = featureList->begin(); feature != featureList->end(); feature++)
     {
         objectValues.push_back((*feature)->extractIn(object.img));
     }
@@ -92,7 +89,7 @@ bool ClassifierState::classify(Object &object)
         distanceToPositiveMean += abs(positiveMeans[i] - *val);
         i++;
     }
-    distanceToPositiveMean /= featureList.size();
+    distanceToPositiveMean /= featureList->size();
     cout << "distance to positive mean : " << distanceToPositiveMean << endl;
     float distanceToNegativeMean = 0;
     i = 0;
@@ -101,7 +98,7 @@ bool ClassifierState::classify(Object &object)
         distanceToNegativeMean += abs(negativeMeans[i] - *val);
         i++;
     }
-    distanceToNegativeMean /= featureList.size();
+    distanceToNegativeMean /= featureList->size();
     cout << "distance to negative mean : " << distanceToNegativeMean << endl;
 
     return distanceToNegativeMean > distanceToPositiveMean;
@@ -228,7 +225,7 @@ void ClassifierState::train(const string& type)
     {
         cout << "fail to open the file containing the number of images" << endl;
     }
-    for(auto feature = featureList.begin(); feature != featureList.end(); feature++)
+    for(auto feature = featureList->begin(); feature != featureList->end(); feature++)
     {
         vector<float> valList;
 

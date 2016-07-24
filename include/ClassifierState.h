@@ -9,7 +9,7 @@
 class ClassifierState
 {
     public:
-        ClassifierState();
+        ClassifierState(){};
         virtual ~ClassifierState();
         virtual void storeValues();
         virtual void loadValues();
@@ -21,7 +21,7 @@ class ClassifierState
         virtual void compareToMean(vector<float>& valueList);
     protected:
         string path;
-        vector<Feature*> featureList;
+        vector<Feature*>* featureList;
         vector< vector<float> > positiveValueList;
         vector< vector<float> > negativeValueList;
         vector<float> positiveMeans;

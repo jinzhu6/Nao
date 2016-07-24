@@ -31,12 +31,8 @@ using namespace std;
 int main(int argc, char* argv[] )
 {
     //****** init classification *******//
-    vector<Feature*> featList;
-    ColorIntensityMean cim = ColorIntensityMean();
-    featList.push_back(&cim);
-    FirstSplitState fss(featList);
-    Classifier classifier(&fss);
-    Nao nao(&classifier);
+
+    Nao nao;
 
     //*********** Lanching **************//
     nao.trainClassifier();
