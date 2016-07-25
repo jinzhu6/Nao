@@ -40,7 +40,7 @@ int main(int argc, char* argv[] )
     //nao.showClassifierState();
     nao.lookForObject();
     nao.showObject();
-    //nao.testClassifier();
+    nao.testClassifier();
     cout << "object found is of type : " << nao.classifyObject() << endl;
 
     waitKey(0);
