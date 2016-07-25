@@ -27,8 +27,9 @@ void Nao::init(){
     firstStateFeatList.push_back(&colorIntensityMean);
     glassCupSplitList.push_back(&shapeFeature);
 
-    fss = FirstSplitState(&firstStateFeatList);
+
     gcs = GlassCupSplitState(&glassCupSplitList);
+    fss = FirstSplitState(&firstStateFeatList,&gcs,&as);
 
     classifier = Classifier(&fss);
 }

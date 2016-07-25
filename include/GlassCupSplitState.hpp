@@ -16,7 +16,10 @@ class GlassCupSplitState : public ClassifierState
 {
 public:
     GlassCupSplitState(){};
-    GlassCupSplitState(vector<Feature*>* featureList);
+    GlassCupSplitState(vector<Feature*>* featureList,
+                       ClassifierState* succesivePositiveState,
+                       ClassifierState* successiveNegativeState);
+
     virtual ~GlassCupSplitState();
 
 protected:

@@ -77,6 +77,10 @@ float getFloat(string s)
 
 string ClassifierState::classify(Object &object)
 {
+    if(finalState)
+    {
+        return postiveClassName;
+    }
     vector<float> objectValues;
     for(auto feature = featureList->begin(); feature != featureList->end(); feature++)
     {

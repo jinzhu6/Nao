@@ -8,7 +8,9 @@ class FirstSplitState : public ClassifierState
 {
     public:
         FirstSplitState(){};
-        FirstSplitState(vector<Feature*>* featureList);
+        FirstSplitState(vector<Feature*>* featureList
+                        ,ClassifierState* succesivePositiveState
+                        ,ClassifierState* successiveNegativeState);
         virtual ~FirstSplitState();
 
     protected:
