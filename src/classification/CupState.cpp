@@ -3,7 +3,7 @@
 CupState::CupState()
 {
     finalState = true;
-    positiveClassName = "cup";
+    positiveClassName = "Cup";
 }
 
 CupState::~CupState()

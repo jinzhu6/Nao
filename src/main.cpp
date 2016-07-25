@@ -38,10 +38,10 @@ int main(int argc, char* argv[] )
     //nao.trainClassifier();
     nao.loadClassifier();
     //nao.showClassifierState();
-    nao.lookForObject();
-    nao.showObject();
-    nao.testClassifier();
-    cout << "object found is of type : " << nao.classifyObject() << endl;
+    //nao.lookForObject();
+    //nao.showObject();
+    cout << "percentage of the validation : " << nao.testClassifier() << endl;
+    //cout << "object found is of type : " << nao.classifyObject() << endl;
 
     waitKey(0);
     return 0;

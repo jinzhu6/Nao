@@ -8,6 +8,7 @@ class Object
 {
     public:
         Object(){img = Mat::zeros(0,0,0);};
+        Object(Mat& img):img(img){name = "";};
         Object(Mat& img, const string name);
         virtual ~Object();
         unsigned int extract_feature(Feature& feature);

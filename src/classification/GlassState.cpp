@@ -3,7 +3,7 @@
 GlassState::GlassState()
 {
     finalState = true;
-    positiveClassName = "glass";
+    positiveClassName = "Glass";
 }
 
 GlassState::~GlassState()

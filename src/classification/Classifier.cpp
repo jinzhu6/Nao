@@ -27,8 +27,12 @@ void Classifier::train(){
     state->storeValues();
 }
 
-unsigned int Classifier::test(){
-    return state->test();
+float Classifier::test(){
+
+    return (state->test("Red apple")+
+            state->test("Yellow apple")+
+            state->test("Glass")+
+            state->test("Cup"))/4;
 }
 
 string Classifier::classify(Object& o){

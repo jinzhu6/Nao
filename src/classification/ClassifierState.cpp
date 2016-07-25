@@ -94,7 +94,7 @@ string ClassifierState::classify(Object &object)
         i++;
     }
     distanceToPositiveMean /= featureList->size();
-    cout << "distance to positive mean : " << distanceToPositiveMean << endl;
+    //cout << "distance to positive mean : " << distanceToPositiveMean << endl;
     float distanceToNegativeMean = 0;
     i = 0;
     for(auto val = objectValues.begin(); val != objectValues.end(); val++)
@@ -103,7 +103,7 @@ string ClassifierState::classify(Object &object)
         i++;
     }
     distanceToNegativeMean /= featureList->size();
-    cout << "distance to negative mean : " << distanceToNegativeMean << endl;
+    //cout << "distance to negative mean : " << distanceToNegativeMean << endl;
 
 
     if(distanceToNegativeMean > distanceToPositiveMean)
@@ -136,8 +136,23 @@ void ClassifierState::compareToMean(vector<float>& valueList)
 
 }
 
-
-
+int getNumberOfImage(string path)
+{
+    string numberPath = path;
+    numberPath.append("/number.txt");
+    cout << "Number of images in the folder " << path << " :\n";
+    ifstream myfile (numberPath);
+    int numberOfImages = 0;
+    string line;
+    if (myfile.is_open())
+    {
+        getline(myfile,line);
+        numberOfImages = getFloat(line);
+        cout << numberOfImages+0 << endl;
+    }
+    myfile.close();
+    return numberOfImages;
+}
 void ClassifierState::loadValues()
 {
     string line;
@@ -215,20 +230,15 @@ void ClassifierState::train(const string& type)
     string trainPath = path;
     trainPath.append("train/");
     trainPath.append(type);
-
-    string numberPath = trainPath;
-    numberPath.append("/number.txt");
     string currentImagePath = trainPath;
-    cout << "Number of images in the folder " << trainPath << " :\n";
-    ifstream myfile (numberPath);
-    int numberOfImages = 0;
+
+
     Mat currentImage;
     vector<Mat> images;
-    if (myfile.is_open())
+    int numberOfImages = 0;
+
+    if(numberOfImages = getNumberOfImage(trainPath) > 0)
     {
-        getline(myfile,line);
-        numberOfImages = getFloat(line);
-        cout << numberOfImages+0 << endl;
         for(int i = 0; i < numberOfImages; i++)
         {
             currentImagePath.append("/image");
@@ -265,10 +275,29 @@ void ClassifierState::train(const string& type)
 };
 
 
-unsigned int ClassifierState::test()
+float ClassifierState::test(const string& className)
 {
+    float percentage = 0;
+    string path = "resources/classifierStates/Validation/";
+    path.append(className);
+    int numberOfImages = getNumberOfImage(path);
+    Mat currentImg;
+    cout << "test of the classifier :" << endl;
+    for(int i = 0; i < numberOfImages; i++){
+        string imgPath = path;
+        imgPath.append("/image");imgPath.append(floatToString(i));imgPath.append(".jpg");
 
-    return 0;
+        currentImg = imread(imgPath);
+        if(currentImg.data){
+            Object o(currentImg);
+            cout << classify(o) << " == " << className << endl;
+            if(classify(o) == className) percentage++;
+        }else{
+            cout << "couldn't find the image during the validation of the dataset at : " << imgPath << endl;
+        }
+    }
+
+    return (percentage/numberOfImages)*100;
 };
 
 

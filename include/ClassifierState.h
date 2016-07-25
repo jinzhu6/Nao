@@ -14,7 +14,7 @@ class ClassifierState
         virtual void storeValues();
         virtual void loadValues();
         virtual void train(const string& type);
-        virtual unsigned int test();
+        virtual float test(const string& className);
         virtual void showValues();
         virtual void showMeans();
         virtual string classify(Object &object);

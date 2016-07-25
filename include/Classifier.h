@@ -14,7 +14,7 @@ class Classifier
         //Classifier(char* trainingPath,char* testingPath):trainingPath(trainingPath),testingPath(testingPath){};
         void load();
         void train();
-        unsigned int test();
+        float test();
         string classify(Object& o);
         virtual ~Classifier();
         void setState(ClassifierState* clS);

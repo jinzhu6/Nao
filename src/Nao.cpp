@@ -73,7 +73,7 @@ void Nao::trainClassifier(){
     classifier.setState(&this->fss);
 }
 
-unsigned int Nao::testClassifier(){
+float Nao::testClassifier(){
     return classifier.test();
 }
 
