@@ -17,7 +17,7 @@ class ClassifierState
         virtual unsigned int test();
         virtual void showValues();
         virtual void showMeans();
-        virtual bool classify(Object &object);
+        virtual string classify(Object &object);
         virtual void compareToMean(vector<float>& valueList);
     protected:
         string path;
@@ -26,6 +26,12 @@ class ClassifierState
         vector< vector<float> > negativeValueList;
         vector<float> positiveMeans;
         vector<float> negativeMeans;
+
+        bool finalState;
+        string postiveClassName = "";
+        string negativeClasseName = "";
+        ClassifierState* succesivePositiveState = nullptr;
+        ClassifierState* successiveNegativeState = nullptr;
 
         void computeMeans();
     private:

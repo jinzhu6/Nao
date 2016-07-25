@@ -47,7 +47,7 @@ void Nao::loadClassifier(){
     classifier.load();
 }
 
-bool Nao::classifyObject(){
+string Nao::classifyObject(){
     if(lastDetectedObject.img.data){
         return classifier.classify(lastDetectedObject);
     }else{

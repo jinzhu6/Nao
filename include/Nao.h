@@ -20,7 +20,7 @@ class Nao
         void showObject();
         void trainClassifier();
         void loadClassifier();
-        bool classifyObject();
+        string classifyObject();
         unsigned int testClassifier();
         void showClassifierState();
     protected:

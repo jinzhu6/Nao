@@ -75,7 +75,7 @@ float getFloat(string s)
     return value;
 }
 
-bool ClassifierState::classify(Object &object)
+string ClassifierState::classify(Object &object)
 {
     vector<float> objectValues;
     for(auto feature = featureList->begin(); feature != featureList->end(); feature++)
@@ -101,8 +101,29 @@ bool ClassifierState::classify(Object &object)
     distanceToNegativeMean /= featureList->size();
     cout << "distance to negative mean : " << distanceToNegativeMean << endl;
 
-    return distanceToNegativeMean > distanceToPositiveMean;
 
+    if(distanceToNegativeMean > distanceToPositiveMean)
+    {
+        if(finalState)
+        {
+            return postiveClassName;
+        }
+        else
+        {
+            return succesivePositiveState->classify(object);
+        }
+    }
+    else
+    {
+        if(finalState)
+        {
+            return negativeClasseName;
+        }
+        else
+        {
+            return successiveNegativeState->classify(object);
+        }
+    }
 }
 
 void ClassifierState::compareToMean(vector<float>& valueList)

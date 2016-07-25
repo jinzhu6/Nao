@@ -34,7 +34,7 @@ unsigned int Classifier::test(){
     return state->test();
 }
 
-bool Classifier::classify(Object& o){
+string Classifier::classify(Object& o){
     return state->classify(o);
 }
 

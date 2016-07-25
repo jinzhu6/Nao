@@ -15,7 +15,7 @@ class Classifier
         void load();
         void train();
         unsigned int test();
-        bool classify(Object& o);
+        string classify(Object& o);
         virtual ~Classifier();
         void setState(ClassifierState* clS);
         void showCurrentState();

@@ -13,6 +13,7 @@ GlassCupSplitState::GlassCupSplitState(vector<Feature*>* featureList)
 {
     this->featureList = featureList;
     path = "resources/classifierStates/GlassCupSplitState/";
+    finalState = 0;
 }
 
 GlassCupSplitState::~GlassCupSplitState()
