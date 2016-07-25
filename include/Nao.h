@@ -9,6 +9,11 @@
 #include "GlassCupSplitState.hpp"
 #include "ShapeFeature.hpp"
 #include "FirstSplitState.h"
+#include "ApplesState.h"
+#include "RedApple.h"
+#include "YellowApple.h"
+#include "CupState.h"
+#include "GlassState.h"
 
 class Nao
 {
@@ -30,12 +35,18 @@ class Nao
 
         FirstSplitState fss;
         GlassCupSplitState gcs;
+        ApplesState as;
+        RedApple ra;
+        YellowApple ya;
+        GlassState gs;
+        CupState cs;
 
         vector<Feature*> firstStateFeatList;
         vector<Feature*> glassCupSplitList;
 
-        ColorIntensityMean colorIntensityMean;
         ShapeFeature shapeFeature;
+        ColorIntensityMean colorIntensityMean;
+
 
 
 };

@@ -7,7 +7,10 @@
 class ApplesState : public ClassifierState
 {
     public:
-        ApplesState();
+        ApplesState(){};
+        ApplesState(vector<Feature*>* featureList,
+                         ClassifierState* succesivePositiveState,
+                         ClassifierState* successiveNegativeState);
         virtual ~ApplesState();
     protected:
     private:

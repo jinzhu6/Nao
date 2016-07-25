@@ -79,7 +79,7 @@ string ClassifierState::classify(Object &object)
 {
     if(finalState)
     {
-        return postiveClassName;
+        return positiveClassName;
     }
     vector<float> objectValues;
     for(auto feature = featureList->begin(); feature != featureList->end(); feature++)
@@ -110,7 +110,7 @@ string ClassifierState::classify(Object &object)
     {
         if(finalState)
         {
-            return postiveClassName;
+            return positiveClassName;
         }
         else
         {

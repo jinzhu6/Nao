@@ -4,7 +4,7 @@
 //
 //  Created by Alessandro Imbrenda on 23/07/16.
 //
-//
+//ShapeFeature shapeFeature;
 
 #ifndef ShapeFeature_hpp
 #define ShapeFeature_hpp

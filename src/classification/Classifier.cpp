@@ -1,7 +1,4 @@
 #include "Classifier.h"
-#define POSITIVE 1
-#define NEGATIVE 0
-
 
 Classifier::Classifier()
 {

@@ -28,8 +28,9 @@ void Nao::init(){
     glassCupSplitList.push_back(&shapeFeature);
 
 
-    gcs = GlassCupSplitState(&glassCupSplitList);
-    fss = FirstSplitState(&firstStateFeatList,&gcs,&as);
+    gcs = GlassCupSplitState(&glassCupSplitList,&gs,&cs);
+    as = ApplesState(&firstStateFeatList,&ra,&ya);
+    fss = FirstSplitState(&firstStateFeatList,&as,&gcs);
 
     classifier = Classifier(&fss);
 }
@@ -39,13 +40,18 @@ void Nao::showObject(){
 
 
 void Nao::lookForObject(){
-    Mat img = imread("resources/Cup.jpg",1);
-    Object obj(img,"glassLBP");
+    Mat img = imread("resources/YellowApple.jpg",1);
+    Object obj(img,"object");
     lastDetectedObject = obj;
 }
 
 void Nao::loadClassifier(){
     classifier.load();
+    classifier.setState(&this->gcs);
+    classifier.load();
+    classifier.setState(&this->as);
+    classifier.load();
+    classifier.setState(&this->fss);
 }
 
 string Nao::classifyObject(){
@@ -60,6 +66,11 @@ string Nao::classifyObject(){
 
 void Nao::trainClassifier(){
     classifier.train();
+    classifier.setState(&this->gcs);
+    classifier.train();
+    classifier.setState(&this->as);
+    classifier.train();
+    classifier.setState(&this->fss);
 }
 
 unsigned int Nao::testClassifier(){

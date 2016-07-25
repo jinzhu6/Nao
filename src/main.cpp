@@ -35,23 +35,13 @@ int main(int argc, char* argv[] )
     Nao nao;
 
     //*********** Lanching **************//
-    nao.trainClassifier();
-    //nao.loadClassifier();
-    nao.showClassifierState();
+    //nao.trainClassifier();
+    nao.loadClassifier();
+    //nao.showClassifierState();
     nao.lookForObject();
     nao.showObject();
     //nao.testClassifier();
     cout << "object found is of type : " << nao.classifyObject() << endl;
-    /*
-    if(argc != 2) return 0;
-
-    Mat img = imread(argv[1],1);
-    Object obj(img,"glassLBP");
-
-    obj.preTreat();
-    obj.show();
-    cout << obj.extract_feature(cim) << endl;
-*/
 
     waitKey(0);
     return 0;

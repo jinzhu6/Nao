@@ -28,7 +28,7 @@ class ClassifierState
         vector<float> negativeMeans;
 
         bool finalState;
-        string postiveClassName = "";
+        string positiveClassName = "";
         string negativeClasseName = "";
         ClassifierState* succesivePositiveState = nullptr;
         ClassifierState* successiveNegativeState = nullptr;

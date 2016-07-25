@@ -8,7 +8,7 @@
 
 ShapeFeature::ShapeFeature()
 {
-    //ctor
+    normalisationDivider = 1;
 }
 
 
@@ -21,32 +21,32 @@ template <typename _Tp>
 void ShapeFeature::compute(Mat& src)
 {
     resultingImage = src;
-    
+
     Mat channel[3];
     // The actual splitting.
     split(resultingImage, channel);
-    
+
     channel[1].setTo(Scalar(0));
-    
+
     Mat br;
     merge(channel,3,br);
-    
+
     channel[0].setTo(Scalar(0));
     Mat r;
     merge(channel,3,r);
-    
+
     cvtColor(r, r, CV_BGR2GRAY);
     medianBlur(r, r, 9 );
     equalizeHist(r, r);
-  
+
     threshold(r, r, 120, 255, THRESH_BINARY);
 
     erode(r, r, Mat());
     dilate(r, r, Mat());
 
-    
-    
-    
+
+
+
     vector< vector <Point> > contours; // Vector for storing contour
     vector< Vec4i > hierarchy;
     int largest_contour_index=0;
@@ -59,7 +59,7 @@ void ShapeFeature::compute(Mat& src)
             largest_contour_index=i;                //Store the index of largest contour
         }
     }
-    
+
     Mat pointsf;
     Mat(contours[largest_contour_index]).convertTo(pointsf, CV_32F);
     RotatedRect boxE = fitEllipse(pointsf);
@@ -67,11 +67,11 @@ void ShapeFeature::compute(Mat& src)
         value = (float)boxE.size.width/boxE.size.height;
     else
         value = (float)boxE.size.height/boxE.size.width;
-    
+
 }
 
 float ShapeFeature::extractIn(Mat& img){
     compute<uchar>(img);
-    cv::imshow("image computed", resultingImage);
+    //cv::imshow("image computed", resultingImage);
     return value;
 }

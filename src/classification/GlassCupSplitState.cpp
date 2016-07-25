@@ -10,10 +10,12 @@
 #include "ColorIntensityMean.h"
 #include <iostream>
 GlassCupSplitState::GlassCupSplitState(vector<Feature*>* featureList,
-                    ClassifierState* succesivePositiveState,
-                    ClassifierState* successiveNegativeState)
+                    ClassifierState* sps,
+                    ClassifierState* sns)
 {
     this->featureList = featureList;
+    this->succesivePositiveState = sps;
+    this->successiveNegativeState = sns;
     path = "resources/classifierStates/GlassCupSplitState/";
     finalState = 0;
 }
